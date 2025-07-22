@@ -175,4 +175,7 @@ In this paper, a direct quantum search approach based on [1] is explained for pa
  
 - Ammar Daskin. An alternative explicit circuit diagram for the quantum search algorithm by implementing a non-unitary gate. arXiv preprint [arXiv:2412.16514](https://arxiv.org/abs/2412.16514), 2024.
 
+
+**any feedback is welcome!**
+
 {% include disqus.html %}
