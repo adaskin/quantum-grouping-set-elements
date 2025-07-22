@@ -1,0 +1,21 @@
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]'], ['\`\`\`math', '\`\`\`']],
+    processEscapes: true,
+    packages: {'[+]': ['color']}
+  },
+  loader: {load: ['[tex]/color']},
+  startup: {
+    ready: () => {
+      MathJax.startup.defaultReady();
+      MathJax.startup.promise.then(() => {
+        // Reprocess math after content loads
+        setTimeout(() => MathJax.typesetPromise(), 500);
+      });
+    }
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
