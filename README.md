@@ -55,10 +55,11 @@ This quantum state represents the sets in the upper half and their complements (
 
 
 ## 2️⃣ ⚛️ Quantum Circuit Implementation of $\mathfrak{C}$
-![Explicit circuit implementation of $\mathfrak{C}$, where $R_y$ denotes the standard Y-rotation gate. The parameter $\phi$ depends on $a$: when $$a=1$$, $$\phi=\pi$$; for other values, $\phi$ is chosen to satisfy $$R_y(\phi)=\begin{bmatrix}\frac{a-1}{a+1}&-\frac{2\sqrt{a}}{a+1}\\\frac{2\sqrt{a}}{a+1}&\frac{a-1}{a+1}\end{bmatrix}$$.](_images/fig_circuit_c.png)
+![Explicit circuit implementation of $\mathfrak{C}$, where $R_y$ denotes the standard Y-rotation gate. The parameter $\phi$ depends on $a$: when $$a=1$$, $$\phi=\pi$$; for other values, $\phi$ is chosen to satisfy $$R_y(\phi)=\begin{bmatrix}\frac{a-1}{a+1}&-\frac{2\sqrt{a}}{a+1}\\\frac{2\sqrt{a}}{a+1}&\frac{a-1}{a+1}\end{bmatrix}$$.](_images/fig_circuit_c.png)  
 *Figure: Explicit circuit implementation of $\mathfrak{C}$, where $R_y$ denotes the standard Y-rotation gate. The parameter $\phi$ depends on $a$: when $$a=1$$, $$\phi=\pi$$; for other values, $\phi$ is chosen to satisfy $$R_y(\phi)=\begin{bmatrix}\frac{a-1}{a+1}&-\frac{2\sqrt{a}}{a+1}\\\frac{2\sqrt{a}}{a+1}&\frac{a-1}{a+1}\end{bmatrix}$$.*
 
-We begin by defining the cosine ($C$) and sine ($S$) matrices:
+
+**Explanation of the circuit.** We begin by defining the cosine ($C$) and sine ($S$) matrices:
 
 $$
 C=\frac{1}{a+1}\begin{bmatrix}a&-1\\-1&a\end{bmatrix}\text{ and }S=\frac{\sqrt{a}}{a+1}\begin{bmatrix}1&1\\1&1\end{bmatrix}.
@@ -176,6 +177,7 @@ In this paper, a direct quantum search approach based on [1] is explained for pa
 - Ammar Daskin. An alternative explicit circuit diagram for the quantum search algorithm by implementing a non-unitary gate. arXiv preprint [arXiv:2412.16514](https://arxiv.org/abs/2412.16514), 2024.
 
 
-**any feedback is welcome!**
+**any feedback is welcome!**  
+
 
 {% include disqus.html %}
