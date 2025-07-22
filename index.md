@@ -55,7 +55,8 @@ This quantum state represents the sets in the upper half and their complements (
 
 
 ## 2️⃣ ⚛️ Quantum Circuit Implementation of $\mathfrak{C}$
-![Explicit circuit implementation of $\mathfrak{C}$, where $R_y$ denotes the standard Y-rotation gate. The parameter $\phi$ depends on $a$: when $$a=1$$, $$\phi=\pi$$; for other values, $\phi$ is chosen to satisfy $$R_y(\phi)=\begin{bmatrix}\frac{a-1}{a+1}&-\frac{2\sqrt{a}}{a+1}\\\frac{2\sqrt{a}}{a+1}&\frac{a-1}{a+1}\end{bmatrix}$$.](_images/fig_circuit_c.png)*Explicit circuit implementation of $\mathfrak{C}$, where $R_y$ denotes the standard Y-rotation gate. The parameter $\phi$ depends on $a$: when $$a=1$$, $$\phi=\pi$$; for other values, $\phi$ is chosen to satisfy $$R_y(\phi)=\begin{bmatrix}\frac{a-1}{a+1}&-\frac{2\sqrt{a}}{a+1}\\\frac{2\sqrt{a}}{a+1}&\frac{a-1}{a+1}\end{bmatrix}$$.*
+![Explicit circuit implementation of $\mathfrak{C}$, where $R_y$ denotes the standard Y-rotation gate. The parameter $\phi$ depends on $a$: when $$a=1$$, $$\phi=\pi$$; for other values, $\phi$ is chosen to satisfy $$R_y(\phi)=\begin{bmatrix}\frac{a-1}{a+1}&-\frac{2\sqrt{a}}{a+1}\\\frac{2\sqrt{a}}{a+1}&\frac{a-1}{a+1}\end{bmatrix}$$.](_images/fig_circuit_c.png)
+*Figure: Explicit circuit implementation of $\mathfrak{C}$, where $R_y$ denotes the standard Y-rotation gate. The parameter $\phi$ depends on $a$: when $$a=1$$, $$\phi=\pi$$; for other values, $\phi$ is chosen to satisfy $$R_y(\phi)=\begin{bmatrix}\frac{a-1}{a+1}&-\frac{2\sqrt{a}}{a+1}\\\frac{2\sqrt{a}}{a+1}&\frac{a-1}{a+1}\end{bmatrix}$$.*
 
 We begin by defining the cosine ($C$) and sine ($S$) matrices:
 
@@ -139,7 +140,8 @@ Thus, $R_y(\pi)=\begin{bmatrix}0&-1\\ 1&0\end{bmatrix}$ (a Pauli-Y rotation up t
 
 By combining the circuit for $\mathfrak{C}$ with the initial state preparation and marking operation, we can define the whole framework as in the following figure.
 
-![The whole direct search circuit without amplitude amplification. The amplitude amplification can be applied by marking the desired set on the ancilla.](_images/fig_whole_circuit.png)*The whole direct search circuit without amplitude amplification. The amplitude amplification can be applied by marking the desired set on the ancilla.*
+![The whole direct search circuit without amplitude amplification. The amplitude amplification can be applied by marking the desired set on the ancilla.](_images/fig_whole_circuit.png)
+*Figure: The whole direct search circuit without amplitude amplification. The amplitude amplification can be applied by marking the desired set on the ancilla.*
 
 ## 3️⃣ ⏱️ Complexity Analysis  
 The whole circuit given in the figure requires $O(n)$ quantum operations if the marking circuit $U_{mark}$ (which is generally implemented through a controlled-Z gate along with a function output) and $U_{init}$ the state preparation operation (Hadamard gates for an equal superposition state) are in $O(n)$. The operator $\mathfrak{C}$ requires only 3 gates per qubit pair.  
