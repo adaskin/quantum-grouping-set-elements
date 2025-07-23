@@ -123,16 +123,22 @@ Therefore, the whole quantum circuit is defined as the sequence requiring only 3
 1. 🔄 Applying $V^T=R_y(90^\circ)=R_y(\pi/2)$ gate to the second qubit in order to change the basis.
 2. ⚙️ Applying the following rotation gate:
 
-   ```math
-   R=R_y(\phi)=\begin{bmatrix}\frac{a-1}{a+1}&-\frac{2\sqrt{a}}{a+1}\\\frac{2\sqrt{a}}{a+1}&\frac{a-1}{a+1}\end{bmatrix}\quad\text{where}\quad\cos(\phi/2)=\frac{a-1}{a+1},\quad\sin(\phi/2)=\frac{2\sqrt{a}}{a+1}.
-   ```
-   - For $a=1$:
+```math
+R=R_y(\phi)=\begin{bmatrix}\frac{a-1}{a+1}&-\frac{2\sqrt{a}}{a+1}\\\frac{2\sqrt{a}}{a+1}&\frac{a-1}{a+1}\end{bmatrix}\quad\text{where}\quad\cos(\phi/2)=\frac{a-1}{a+1},\quad\sin(\phi/2)=\frac{2\sqrt{a}}{a+1}.
+```
 
-   ```math
-   \cos(\phi/2)=\frac{1-1}{1+1}=0,\quad\sin(\phi/2)=\frac{2\sqrt{1}}{1+1}=1\implies\phi/2=\pi/2,\quad\phi=\pi.
-   ```
+   - For $a=1$ **(should choose a close value to 1, e.g. $(n-1)/n$, since 1 makes  the eigenvalue in $D_C$ zero)**:
 
-Thus, $R_y(\pi)=\begin{bmatrix}0&-1\\ 1&0\end{bmatrix}$ (a Pauli-Y rotation up to phase).
+```math
+\cos(\phi/2) = \frac{1-1}{1+1}=0,
+\quad \sin(\phi/2)=\frac{2\sqrt{1}}{1+1}=1 \implies\phi/2=\pi/2,\quad\phi=\pi.
+```
+
+Thus, 
+```math
+R_y(\pi)=\begin{bmatrix}0&-1\\ 1&0\end{bmatrix}
+``` 
+(a Pauli-Y rotation up to phase).
 
 1. 🔄 Applying $V=R_y(-90^\circ)=R_y(-\pi/2)$ gate to the second qubit reverts the basis back.
 

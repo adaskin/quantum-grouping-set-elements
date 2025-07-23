@@ -129,7 +129,7 @@ Therefore, the whole quantum circuit is defined as the sequence requiring only 3
    $$
    R=R_y(\phi)=\begin{bmatrix}\frac{a-1}{a+1}&-\frac{2\sqrt{a}}{a+1}\\\frac{2\sqrt{a}}{a+1}&\frac{a-1}{a+1}\end{bmatrix}\quad\text{where}\quad\cos(\phi/2)=\frac{a-1}{a+1},\quad\sin(\phi/2)=\frac{2\sqrt{a}}{a+1}.
    $$
-   - For $a=1$:
+   - For $a=1$ **(should choose a close value to 1, e.g. $(n-1)/n$, since 1 makes  the eigenvalue in $D_C$ zero)**:
 
    $$
    \cos(\phi/2)=\frac{1-1}{1+1}=0,\quad\sin(\phi/2)=\frac{2\sqrt{1}}{1+1}=1\implies\phi/2=\pi/2,\quad\phi=\pi.
