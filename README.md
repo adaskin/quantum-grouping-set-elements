@@ -1,10 +1,3 @@
----
-layout: post
-mathjax: true
-comments: true
----
-{% include mathjax.html %}
-
 # 🔍 A Brief Tutorial on Grouping Set Elements Through Direct Quantum Search
 
 **Ammar Daskin**  
@@ -18,107 +11,111 @@ Consider a set containing two groups of elements, red 🔴 and blue 🔵, where 
 
 ![grouping set elements](_images/fig_sets.png)
 
-This problem can be formulated for quantum computers by first constructing two quantum states: $$\vec{u}_{init}$$ representing the elements with their probabilities, and $$\vec{u}_{marked}$$ which uses sign differences in the amplitudes to distinguish between element types:
+This problem can be formulated for quantum computers by first constructing two quantum states: $\vec{u}_{init}$ representing the elements with their probabilities, and $\vec{u}_{marked}$ which uses sign differences in the amplitudes to distinguish between element types:
 
-$$
+```math
 \vec{u}_{init}=\begin{bmatrix}p_0\\p_1\\p_2\\p_4\\p_5\\p_6\\p_7\\\end{bmatrix}\text{ and }\ \vec{u}_{marked}=\begin{bmatrix}{\color{blue}-p_0}\\{\color{red}p_1}\\{\color{red}p_2}\\{\color{blue}-p_3}\\{\color{red}p_4}\\{\color{red}p_5}\\{\color{blue}-p_6}\\{\color{blue}-p_7}\\\end{bmatrix}.
-$$
+```
 
 The solution to this problem is then represented by the following two quantum states:
 
-$$
+```math
 {\color{blue}\vec{s}_{marked}=\begin{bmatrix}p_0\\0\\0\\p_3\\0\\0\\p_6\\p_7\\\end{bmatrix}}\text{ and }{\color{red}\vec{s}_{unmarked}=\begin{bmatrix}0\\p_1\\p_2\\0\\p_4\\p_5\\0\\0\\\end{bmatrix}}.
-$$
+```
 
-We construct the quantum state $$\vec{u}_{init}$$ to encode the probability amplitudes of the elements. For example, given a set, we prepare a quantum state representing the likelihood of each element: Consider $2^n$-dimensional vectors $$\vec{u}_{init}$$ and $$\vec{u}_{marked}$$ that differ only in the signs of certain elements, marking their group membership: For $a\in R$ and $a\geq 0.5$, if the following operator [1], $$\mathfrak{C}$$, is applied to a vector horizontally stacked with $$\vec{u}_{init}$$ and $$\vec{u}_{marked}$$ and zero vectors, on the first half of the output we get one group and on the remaining half of the output is the second group elements with higher probabilities:
+We construct the quantum state $\vec{u}_{init}$ to encode the probability amplitudes of the elements. For example, given a set, we prepare a quantum state representing the likelihood of each element: Consider $2^n$-dimensional vectors $\vec{u}_{init}$ and $\vec{u}_{marked}$ that differ only in the signs of certain elements, marking their group membership: For $a\in R$ and $a\geq 0.5$, if the following operator [1], $\mathfrak{C}$, is applied to a vector horizontally stacked with $\vec{u}_{init}$ and $\vec{u}_{marked}$ and zero vectors, on the first half of the output we get one group and on the remaining half of the output is the second group elements with higher probabilities:
 
-$$
+```math
 \underbrace{\frac{1}{a+1}\begin{bmatrix}a&-1&-\sqrt{a}&-\sqrt{a}\\-1&a&-\sqrt{a}&-\sqrt{a}\\\sqrt{a}&\sqrt{a}&a&-1\\\sqrt{a}&\sqrt{a}&-1&a\end{bmatrix}}_{\mathfrak{C}}\otimes I^{\otimes n}\times\begin{bmatrix}\vec{u}_{marked}\\\vec{u}_{init}\\\hline\vec{0}\\\vec{0}\end{bmatrix}=\frac{1}{a+1}\begin{bmatrix}a\vec{u}_{marked}-\vec{u}_{init}\\-\vec{u}_{marked}+au_{init}\\\hline\sqrt{a}(\vec{u}_{marked}+\vec{u}_{init})\\\sqrt{a}(\vec{u}_{marked}+\vec{u}_{init})\end{bmatrix}.
-$$
+```
 
 When $a$ is close to 1, this can be used to indicate separate two group of elements by the value of the first ancilla qubit:
 
-$$
+```math
 \frac{1}{2}\begin{bmatrix}u_{marked}-u_{init}\\-u_{marked}+u_{init}\\\hline(u_{marked}+u_{init})\\(u_{marked}+u_{init})\end{bmatrix}=\frac{1}{2}\begin{bmatrix}\color{blue}-s_{marked}\\\color{blue}s_{marked}\\\hline\color{red}s_{unmarked}\\\color{red}s_{unmarked}\end{bmatrix}
-$$
+```
 
 When measuring the first qubit of this quantum state, the outcome $0$ yields elements from one group, while the outcome $1$ yields elements from the second group in the collapsed state. The probability for both groups can be amplified through the amplitude amplification on the ancilla. This approach is given as an alternative implementation [1] to Grover search algorithm [2,4] by implementing the non-linear operation described in Ref.~[3].
 
 **🔢 Separating multiple groups.** Similarly, after marking different groups, we can stack them all together to have a quantum state where ancilla indicates different groups in the set.
 
-$$
+```math
 \begin{bmatrix}\mathfrak{C}&&&\\&\mathfrak{C}&&\\&&\ddots&\\&&&\mathfrak{C}\\\end{bmatrix}\otimes I^{\otimes n}\times\begin{bmatrix}\vec{u}^{(1)}_{marked}\\\vec{u}_{init}\\\\vec{0}\\\vec{0}\\\\hline\vdots\\\hline\vec{u}^{(k)}_{marked}\\\vec{u}_{init}\\\vec{0}\\\vec{0}\\\end{bmatrix}=\begin{bmatrix}\color{blue}-s^{(1)}_{marked}\\\color{blue}s^{(1)}_{marked}\\\color{red}s^{(1)}_{unmarked}\\\color{red}s^{(1)}_{unmarked}\\\hline\vdots\\\hline\color{blue}-s^{(k)}_{marked}\\\color{blue}s^{(k)}_{marked}\\\color{red}s^{(k)}_{unmarked}\\\color{red}s^{(k)}_{unmarked}\end{bmatrix}\xrightarrow{SWAP}\begin{bmatrix}\color{blue}-s^{(1)}_{marked}\\\color{blue}s^{(1)}_{marked}\\\vdots\\\color{blue}-s^{(k)}_{marked}\\\color{blue}s^{(k)}_{marked}\\\hline\color{red}s^{(1)}_{unmarked}\\\color{red}s^{(1)}_{unmarked}\\\vdots\\\color{red}s^{(k)}_{unmarked}\\\color{red}s^{(k)}_{unmarked}\end{bmatrix}
-$$
+```
 
-This quantum state represents the sets in the upper half and their complements (the unmarked elements) in the second half. Note that instead of the same $$\vec{u}_{init}$$, one can use different $$\vec{u}_{init}$$ in a similar fashion to operate on different sets.
+This quantum state represents the sets in the upper half and their complements (the unmarked elements) in the second half. Note that instead of the same ```\vec{u}_{init}```, one can use different ```\vec{u}_{init}``` in a similar fashion to operate on different sets.
 
 
 
 ## 2️⃣ ⚛️ Quantum Circuit Implementation of $\mathfrak{C}$
-![Explicit circuit implementation of $\mathfrak{C}$, where $R_y$ denotes the standard Y-rotation gate. The parameter $\phi$ depends on $a$: when $$a=1$$, $$\phi=\pi$$; for other values, $\phi$ is chosen to satisfy $$R_y(\phi)=\begin{bmatrix}\frac{a-1}{a+1}&-\frac{2\sqrt{a}}{a+1}\\\frac{2\sqrt{a}}{a+1}&\frac{a-1}{a+1}\end{bmatrix}$$.](_images/fig_circuit_c.png)  
-*Figure: Explicit circuit implementation of $\mathfrak{C}$, where $R_y$ denotes the standard Y-rotation gate. The parameter $\phi$ depends on $a$: when $$a=1$$, $$\phi=\pi$$; for other values, $\phi$ is chosen to satisfy $$R_y(\phi)=\begin{bmatrix}\frac{a-1}{a+1}&-\frac{2\sqrt{a}}{a+1}\\\frac{2\sqrt{a}}{a+1}&\frac{a-1}{a+1}\end{bmatrix}$$.*
+![Explicit circuit implementation of $\mathfrak{C}$, where $R_y$ denotes the standard Y-rotation gate. The parameter $\phi$ depends on $a$: when ```a=1```, ```\phi=\pi```; for other values, $\phi$ is chosen to satisfy ```R_y(\phi)=\begin{bmatrix}\frac{a-1}{a+1}&-\frac{2\sqrt{a}}{a+1}\\\frac{2\sqrt{a}}{a+1}&\frac{a-1}{a+1}\end{bmatrix}```.](_images/fig_circuit_c.png)  
+*Figure: Explicit circuit implementation of $\mathfrak{C}$, where $R_y$ denotes the standard Y-rotation gate. The parameter $\phi$ depends on $a$: when $a=1$, $\phi=\pi$; for other values, $\phi$ is chosen to satisfy* 
+```math
+R_y(\phi)=\begin{bmatrix}\frac{a-1}{a+1}&-\frac{2\sqrt{a}}{a+1}\\\frac{2\sqrt{a}}{a+1}&\frac{a-1}{a+1}\end{bmatrix}.
+```
+
 
 
 **Explanation of the circuit.** We begin by defining the cosine ($C$) and sine ($S$) matrices:
 
-$$
+```math
 C=\frac{1}{a+1}\begin{bmatrix}a&-1\\-1&a\end{bmatrix}\text{ and }S=\frac{\sqrt{a}}{a+1}\begin{bmatrix}1&1\\1&1\end{bmatrix}.
-$$
+```
 
 The unitary operator $\mathfrak{C}$ can then be expressed in cosine-sine form as:  
 
-$$
+```math
 \mathfrak{C}=\frac{1}{a+1}\begin{bmatrix}a&-1&-\sqrt{a}&-\sqrt{a}\\-1&a&-\sqrt{a}&-\sqrt{a}\\\sqrt{a}&\sqrt{a}&a&-1\\\sqrt{a}&\sqrt{a}&-1&a\end{bmatrix}=\begin{bmatrix}C&-S\\S&C\end{bmatrix}\text{ with }C^2+S^2=I.
-$$
+```
 
 Here, $C^2+S^2=I$ ensures unitarity. The eigenspaces for both matrices are characterized by the Hadamard like matrices with the following decompositions:  
 
-$$
+```math
 S=\left(\begin{matrix}1&1\\-1&1\end{matrix}\right)\left(\begin{matrix}0&0\\0&\frac{\sqrt{a}}{a+1}\end{matrix}\right)\left(\begin{matrix}1&-1\\1&1\end{matrix}\right)=\frac{1}{a+1}\left(\begin{matrix}\sqrt{a}&\sqrt{a}\\\sqrt{a}&\sqrt{a}\end{matrix}\right).
-$$
+```
 
-$$
+```math
 \begin{split}
 C=&\frac{1}{2(a+1)}\left(\begin{matrix}1&1\\-1&1\end{matrix}\right)\left(\begin{matrix}a+1&0\\0&a-1\end{matrix}\right)\left(\begin{matrix}1&-1\\1&1\end{matrix}\right)\\=&\frac{1}{2(a+1)}\left(\begin{matrix}a+1&a-1\\-(a+1)&a-1\end{matrix}\right)\left(\begin{matrix}1&-1\\1&1\end{matrix}\right)\\=&\frac{1}{a+1}\left(\begin{matrix}a&-1\\-1&a\end{matrix}\right).
 \end{split}
-$$
+```
 
 More specifically, for the quantum gate 
 
-   $$
+   ```math
    V=\frac{1}{\sqrt{2}}\begin{bmatrix}1&1\\-1&1\end{bmatrix};
-   $$
+   ```
 
 the eigendecompositions can be finalized as:
 
-$$
+```math
 C=VD_CV^T,\quad S=VD_SV^T,
-$$
+```
 
 with 
 
-$$
+```math
 D_C=\begin{bmatrix}1&0\\0&\frac{a-1}{a+1}\end{bmatrix},\quad D_S=\begin{bmatrix}0&0\\0&\frac{2\sqrt{a}}{a+1}\end{bmatrix}.
-$$
+```
 
 Therefore, $\mathfrak{C}$ can be factorized into:
 
-$$
+```math
 \mathfrak{C}=(I_2\otimes V)\cdot\mathcal{D}\cdot(I_2\otimes V^T),
-$$
+```
 
 where $\mathcal{D}$ is a block-diagonal matrix:
 
-$$
+```math
 \mathcal{D}=\begin{bmatrix}D_C&-D_S\\D_S&D_C\end{bmatrix}.
-$$
+```
 
 We leverage the cosine-sine decomposition and eigendecompositions of $C$ and $S$ to construct a quantum circuit for the operator $\mathfrak{C}$. In the basis defined by $V^T$, $\mathcal{D}$ simplifies to the following:
 - When the second qubit is $1$, to the first qubit, apply the following gate: 
 
-$$
+```math
 R=\begin{bmatrix}\frac{a-1}{a+1}&-\frac{2\sqrt{a}}{a+1}\\\frac{2\sqrt{a}}{a+1}&\frac{a-1}{a+1}\end{bmatrix}.
-$$
+```
 
 - When the second qubit (in the eigenbasis) is $0$, do nothing or apply $I$ to the first qubit.
 
@@ -126,14 +123,14 @@ Therefore, the whole quantum circuit is defined as the sequence requiring only 3
 1. 🔄 Applying $V^T=R_y(90^\circ)=R_y(\pi/2)$ gate to the second qubit in order to change the basis.
 2. ⚙️ Applying the following rotation gate:
 
-   $$
+   ```math
    R=R_y(\phi)=\begin{bmatrix}\frac{a-1}{a+1}&-\frac{2\sqrt{a}}{a+1}\\\frac{2\sqrt{a}}{a+1}&\frac{a-1}{a+1}\end{bmatrix}\quad\text{where}\quad\cos(\phi/2)=\frac{a-1}{a+1},\quad\sin(\phi/2)=\frac{2\sqrt{a}}{a+1}.
-   $$
+   ```
    - For $a=1$:
 
-   $$
+   ```math
    \cos(\phi/2)=\frac{1-1}{1+1}=0,\quad\sin(\phi/2)=\frac{2\sqrt{1}}{1+1}=1\implies\phi/2=\pi/2,\quad\phi=\pi.
-   $$
+   ```
 
 Thus, $R_y(\pi)=\begin{bmatrix}0&-1\\ 1&0\end{bmatrix}$ (a Pauli-Y rotation up to phase).
 
@@ -178,6 +175,3 @@ In this paper, a direct quantum search approach based on [1] is explained for pa
 
 
 **any feedback is welcome!**  
-
-
-{% include disqus.html %}
