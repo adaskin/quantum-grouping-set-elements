@@ -29,7 +29,7 @@ We construct the quantum state $\vec{u}_{init}$ to encode the probability amplit
 \underbrace{\frac{1}{a+1}\begin{bmatrix}a&-1&-\sqrt{a}&-\sqrt{a}\\-1&a&-\sqrt{a}&-\sqrt{a}\\\sqrt{a}&\sqrt{a}&a&-1\\\sqrt{a}&\sqrt{a}&-1&a\end{bmatrix}}_{\mathfrak{C}}\otimes I^{\otimes n}\times\begin{bmatrix}\vec{u}_{marked}\\\vec{u}_{init}\\\hline\vec{0}\\\vec{0}\end{bmatrix}=\frac{1}{a+1}\begin{bmatrix}a\vec{u}_{marked}-\vec{u}_{init}\\-\vec{u}_{marked}+au_{init}\\\hline\sqrt{a}(\vec{u}_{marked}+\vec{u}_{init})\\\sqrt{a}(\vec{u}_{marked}+\vec{u}_{init})\end{bmatrix}.
 ```
 
-When $a$ is close to 1, this can be used to indicate separate two group of elements by the value of the first ancilla qubit:
+When $a$ is **close to** 1 (e.g. $(n-1)/n$), this can be used to indicate separate two group of elements by the value of the first ancilla qubit:
 
 ```math
 \frac{1}{2}\begin{bmatrix}u_{marked}-u_{init}\\-u_{marked}+u_{init}\\\hline(u_{marked}+u_{init})\\(u_{marked}+u_{init})\end{bmatrix}=\frac{1}{2}\begin{bmatrix}\color{blue}-s_{marked}\\\color{blue}s_{marked}\\\hline\color{red}s_{unmarked}\\\color{red}s_{unmarked}\end{bmatrix}
