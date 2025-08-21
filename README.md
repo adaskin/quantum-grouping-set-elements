@@ -1,7 +1,6 @@
 # 🔍 A Brief Tutorial on Grouping Set Elements Through Direct Quantum Search
 
-**Ammar Daskin**  
-📄 for PDF version: [http://dx.doi.org/10.13140/RG.2.2.35311.55201](http://dx.doi.org/10.13140/RG.2.2.35311.55201)
+Below is taken from the appendix of the paper: Ammar Daskin. An alternative explicit circuit diagram for the quantum search algorithm by implementing a non-unitary gate. arXiv preprint [arXiv:2412.16514](https://arxiv.org/abs/2412.16514), 2024.
 
 ## 📝 Abstract  
 It is shown that instead of repeating the operators of the Grover search algorithm, one can directly generate the final solution state by using an ancillary qubit. Although the amplitude amplification at the end of the circuit matches the asymptotic complexity of the Grover search algorithm, obtaining the solution state with $O(1)$ operations enables new algorithmic designs in the subspace of a quantum state determined by the value of the ancilla register. This paper briefly explains how this approach can be used to separate a group of elements into disjoint sets, accompanied by explicit circuit diagrams. In addition, it discusses how this approach can enable divide-and-conquer, dynamic programming, and other similar algorithmic techniques on quantum computers.
@@ -175,7 +174,6 @@ In this paper, a direct quantum search approach based on [1] is explained for pa
 *Note that emojis and some grammar corrections are made by using DeepSeek-R1*
 
 ## 🖋️ Citation    
-- Ammar Daskin. A brief tutorial on grouping set elements through direct quantum search. 2025 ResearchGate preprint [http://dx.doi.org/10.13140/RG.2.2.35311.55201](http://dx.doi.org/10.13140/RG.2.2.35311.55201)   
  
 - Ammar Daskin. An alternative explicit circuit diagram for the quantum search algorithm by implementing a non-unitary gate. arXiv preprint [arXiv:2412.16514](https://arxiv.org/abs/2412.16514), 2024.
 
